@@ -5,11 +5,8 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-ifeq ($(TARGET_PREBUILT_KERNEL),)
+# Kernel
 LOCAL_KERNEL := device/xiaomi/houji-kernel/kernel
-else
-LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
-endif
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_KERNEL):kernel
