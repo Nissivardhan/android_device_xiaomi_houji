@@ -8,7 +8,7 @@
 
 function vendor_imports() {
     cat <<EOF >>"$1"
-		"device/foo/baz",
+		"device/xiaomi/houji",
 EOF
 }
 
