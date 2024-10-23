@@ -6,9 +6,3 @@
 #
 $(call inherit-product, vendor/xiaomi/houji/houji-vendor.mk)
 $(call inherit-product, device/xiaomi/sm8650-common/pineapple.mk)
-
-# Kernel
-LOCAL_KERNEL := device/xiaomi/houji-kernel/kernel
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_KERNEL):kernel
