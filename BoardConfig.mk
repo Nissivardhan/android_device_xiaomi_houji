@@ -7,5 +7,8 @@
 
 DEVICE_PATH := device/xiaomi/houji
 
+# Inherit common specification
+include device/xiaomi/sm8650-common/BoardConfigCommon.mk
+
 # Use the non-open-source parts, if they're present
 -include vendor/xiaomi/houji/BoardConfigVendor.mk
