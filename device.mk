@@ -4,11 +4,10 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 #
+$(call inherit-product, vendor/xiaomi/houji/houji-vendor.mk)
 
 # Kernel
 LOCAL_KERNEL := device/xiaomi/houji-kernel/kernel
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_KERNEL):kernel
-
-$(call inherit-product-if-exists, vendor/xiaomi/houji/houji-vendor.mk)
