@@ -44,8 +44,6 @@ blob_fixups: blob_fixups_user_type = {
         'odm/etc/camera/motiontuning.xml'
     ): blob_fixup()
         .regex_replace('xml=version', 'xml version'),
-    'system_ext/framework/mirilhook.jar': blob_fixup()
-        .apktool_patch('blob-patches/mirilhook.patch'),
 }
 
 module = ExtractUtilsModule(
