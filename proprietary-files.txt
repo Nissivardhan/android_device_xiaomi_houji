@@ -47,6 +47,11 @@ odm/lib64/rfs/dsp/libapn_dsp_skel.so;SYMLINK=vendor/lib64/rfs/dsp/libapn_dsp_ske
 odm/lib64/rfs/dsp/libbitml_nsp_75na_skel.so;SYMLINK=vendor/lib64/rfs/dsp/libbitml_nsp_75na_skel.so
 odm/lib64/rfs/dsp/libhdr_skel.so;SYMLINK=vendor/lib64/rfs/dsp/libhdr_skel.so
 odm/lib64/rfs/dsp/libqsegnetengine_dsp_skel.so;SYMLINK=vendor/lib64/rfs/dsp/libqsegnetengine_dsp_skel.so
+odm/lib64/se_algo/libQnnHtp.so;MODULE_SUFFIX=_xiaomi
+odm/lib64/se_algo/libQnnHtpNetRunExtensions.so;MODULE_SUFFIX=_xiaomi
+odm/lib64/se_algo/libQnnHtpV75Skel.so;MODULE_SUFFIX=_xiaomi
+odm/lib64/se_algo/libQnnHtpV75Stub.so;MODULE_SUFFIX=_xiaomi
+odm/lib64/se_algo/libQnnSystem.so;MODULE_SUFFIX=_xiaomi
 odm/lib64/bm4a68v08s12n52.bin
 odm/lib64/bm4a68v08s12n53.bin
 odm/lib64/bm4a73v08s12n02.bin
@@ -128,11 +133,6 @@ vendor/lib64/rfs/dsp/libvpp_svc_skel.so
 vendor/lib64/rfs/dsp/libvpp_vqa_networks.so
 vendor/lib64/rfs/dsp/libvpt_action_recognition.so
 vendor/lib64/rfs/dsp/libworker_pool.so
-vendor/lib64/se_algo/libQnnHtp.so;MODULE_SUFFIX=_xiaomi
-vendor/lib64/se_algo/libQnnHtpNetRunExtensions.so;MODULE_SUFFIX=_xiaomi
-vendor/lib64/se_algo/libQnnHtpV75Skel.so;MODULE_SUFFIX=_xiaomi
-vendor/lib64/se_algo/libQnnHtpV75Stub.so;MODULE_SUFFIX=_xiaomi
-vendor/lib64/se_algo/libQnnSystem.so;MODULE_SUFFIX=_xiaomi
 
 # Audio (Config)
 odm/etc/audio/sku_pineapple/mixer_paths_overlay_static.xml
