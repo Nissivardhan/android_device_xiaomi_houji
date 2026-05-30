@@ -34,3 +34,10 @@ PRODUCT_PACKAGES += \
     HoujiEuiccOverlay \
     SettingsOverlayHouji \
     SystemUIResHouji
+# MiuiCamera region (global blobs) + aux-lens allowlist + feature config (device_features/houji.xml)
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.product.mod_device=houji_global
+
+PRODUCT_VENDOR_PROPERTIES += \
+    vendor.camera.aux.packagelist=org.codeaurora.snapcam,com.android.camera \
+    persist.vendor.camera.privapp.list=com.android.camera

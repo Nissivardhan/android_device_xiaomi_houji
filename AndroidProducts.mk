@@ -5,5 +5,5 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/lineage_houji.mk
+    $(LOCAL_DIR)/custom_houji.mk
 
