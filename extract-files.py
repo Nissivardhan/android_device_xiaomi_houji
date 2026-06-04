@@ -85,9 +85,61 @@ blob_fixups: blob_fixups_user_type = {
     (
         'odm/lib64/libcamxcommonutils.so',
         'vendor/lib64/libcameraopt.so',
-        'odm/lib64/hw/camera.qcom.so'
     ): blob_fixup()
         .add_needed('libprocessgroup_shim.so'),
+    (
+        'odm/lib64/hw/camera.qcom.so',
+    ): blob_fixup()
+        .add_needed('libprocessgroup_shim.so')
+        # MiuiCamera 2x (tele): SensorNode::ExecuteProcessRequest crashes on a NULL
+        # client-name (strcmp(NULL, "com.android.camera")) under AOSP. Replace that
+        # `bl strcmp` with `mov w0, #0` so it takes the MIUI SAT path -> 2x works.
+        .binary_regex_replace(
+            b'\xd4\x12\x09\x94',  # bl strcmp
+            b'\x00\x00\x80\x52',  # mov w0, #0
+        ),
+    (
+        'odm/lib64/com.qti.feature2.gs.sm8650.so',
+    ): blob_fixup()
+        # General-stats feature graph: type-7 map dispatch — force the b.hi error
+        # branch (@0xa1e78) to take case0 instead of erroring out.
+        .binary_regex_replace(
+            b'\x3f\x16\x00\x71\xc8\x07\x00\x54',  # cmp w17,#5 ; b.hi error
+            b'\x3f\x16\x00\x71\x28\x0e\x00\x54',  # cmp w17,#5 ; b.hi case0
+        ),
+    (
+        'odm/lib64/camera/components/com.xiaomi.node.smooth_transition.so',
+    ): blob_fixup()
+        # SupportedFeature descriptor numUnits: 1 -> 2 (struct @0x216e0, name ptr
+        # to "SupportedFeature" @vaddr 0x224f).
+        .binary_regex_replace(
+            b'\x4f\x22\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00',
+            b'\x4f\x22\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x02\x00\x00\x00',
+        ),
+    (
+        'odm/lib64/hw/com.qti.chi.override.so',
+    ): blob_fixup()
+        # aeRegion + afRegion numUnits: 4 -> 5 (two descriptors @0x5728a8/0x5728c8).
+        .binary_regex_replace(
+            b'\x94\x11\x0a\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x04\x00\x00\x00',  # aeRegion
+            b'\x94\x11\x0a\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x05\x00\x00\x00',
+        )
+        .binary_regex_replace(
+            b'\x6b\x7b\x0c\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x04\x00\x00\x00',  # afRegion
+            b'\x6b\x7b\x0c\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x05\x00\x00\x00',
+        ),
+    (
+        'odm/lib64/libchifeature2.so',
+    ): blob_fixup()
+        # aeRegion + afRegion numUnits: 4 -> 5 (two descriptors @0x5728a8/0x5728c8).
+        .binary_regex_replace(
+            b'\x84\x11\x0a\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x04\x00\x00\x00',  # aeRegion
+            b'\x84\x11\x0a\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x05\x00\x00\x00',
+        )
+        .binary_regex_replace(
+            b'\x5b\x7b\x0c\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x04\x00\x00\x00',  # afRegion
+            b'\x5b\x7b\x0c\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x05\x00\x00\x00',
+        ),
 }
 
 module = ExtractUtilsModule(
